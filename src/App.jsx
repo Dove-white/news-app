@@ -1,13 +1,12 @@
-import './App.css'
-import News from './pages'
+import News from "./pages";
+import Overview from "./pages";
 
 function App() {
-
   return (
     <>
-      <News />
+      <Overview />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
