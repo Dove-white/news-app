@@ -7,7 +7,7 @@ const SingleNews = () => {
     <>
       <article className="w-[300px] flex flex-col gap-2 border-2 p-3 rounded-2xl m-5 border-t-0">
         <img className="rounded-2xl" src={NewsImage} alt="" />
-        <h4 className="text-2xl font-bold text-center">Title</h4>
+        <h4 className="text-2xl font-bold">Title</h4>
         <p className="h-[120px]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
           pariatur unde aut suscipit nisi ullam!
