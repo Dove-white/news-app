@@ -1,3 +1,12 @@
-import News from "./News";
+import React from "react";
+import News from "./news/News";
 
-export default News;
+const Overview = () => {
+  return (
+    <main className="p-10 flex justify-center">
+      <News />
+    </main>
+  );
+};
+
+export default Overview;

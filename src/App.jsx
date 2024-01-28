@@ -1,12 +1,10 @@
 import News from "./pages";
+import Overview from "./pages";
 
 function App() {
   return (
     <>
-    <main className="p-10 flex justify-center">
-
-      <News />
-    </main>
+      <Overview />
     </>
   );
 }
