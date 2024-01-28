@@ -5,8 +5,8 @@ const News = () => {
   return (
     <>
       <main>
-        <h2>News</h2>
-        <div className="news-container">
+        <h2 className="text-3xl font-bold text-center">News</h2>
+        <div className="flex flex-wrap justify-between">
           <SingleNews />
           <SingleNews />
           <SingleNews />
