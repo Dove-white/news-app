@@ -1,13 +1,14 @@
-import './App.css'
-import News from './pages'
+import News from "./pages";
 
 function App() {
-
   return (
     <>
+    <main className="p-10 flex justify-center">
+
       <News />
+    </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
