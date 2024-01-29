@@ -6,7 +6,7 @@ const News = () => {
     <>
       <main>
         <h2 className="text-3xl font-bold text-center">News</h2>
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-between max-md:justify-center">
           <SingleNews />
           <SingleNews />
           <SingleNews />
