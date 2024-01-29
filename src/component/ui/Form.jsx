@@ -8,14 +8,18 @@ const Form = () => {
 
   const [inputs, setInputs] = useState({});
 
+  function capFirst(str) {
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
   // Post Method
   const apiPost = async () => {
     await fetch(`${baseUrl}/api/v1/news`, {
       method: "POST",
       body: JSON.stringify({
-        title: inputs.title,
-        content: inputs.content,
-        image: inputs.image,
+        title: inputs.title.toUpperCase().trim(),
+        content: capFirst("" + inputs.content.trim()),
+        image: inputs.image.trim(),
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -51,16 +55,16 @@ const Form = () => {
         placeholder="Breaking News"
         onChange={handleChange}
       />
-      <InputFilled
+      <TextFilled
         label="Content"
-        type="text"
         id="content"
         placeholder="A sort article about the breaking news"
         onChange={handleChange}
       />
-      <TextFilled
+      <InputFilled
         label="Image Url"
         id="image"
+        type="text"
         placeholder="https://anylogic.help/anylogic/ui/images/format.png"
         onChange={handleChange}
       />

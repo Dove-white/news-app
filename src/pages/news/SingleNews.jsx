@@ -7,7 +7,7 @@ const SingleNews = ({title, content, imageUrl}) => {
       <article className="w-[300px] flex flex-col gap-2 border-2 p-3 rounded-2xl m-5 border-t-0">
         <img className="rounded-2xl h-[140px] object-contain" src={imageUrl} alt="" />
         <h4 className="font-bold md:h-[30px] text-base">{title}</h4>
-        <p className="h-[120px]">
+        <p className="h-[120px] overflow-hidden">
           {content}
         </p>
         <div className="flex justify-between">

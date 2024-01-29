@@ -18,7 +18,7 @@ const News = () => {
     <>
       <main>
         <h2 className="text-3xl font-bold text-center">News</h2>
-        <div className="flex flex-wrap justify-between max-md:justify-center">
+        <div className="flex flex-wrap lg:grid lg:grid-cols-4 xl:grid-cols-5 max-md:justify-center">
           {data.map((item) => (
             <SingleNews
               key={item.id}
