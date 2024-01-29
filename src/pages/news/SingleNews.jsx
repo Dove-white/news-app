@@ -1,6 +1,6 @@
 import React from "react";
 import NewsImage from "../../assets/img/news-image.jpg";
-import Button from "../../component/Button";
+import Button from "../../component/ui/Button";
 
 const SingleNews = () => {
   return (
