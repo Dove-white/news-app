@@ -4,7 +4,7 @@ const TextFilled = ({ label, id, placeholder }) => {
   return (
     <>
       <div>
-        <label for={id} class="block mb-2 text-sm font-medium text-black">
+        <label htmlFor={id} className="block mb-2 text-sm font-medium text-black">
           {label}
         </label>
 
