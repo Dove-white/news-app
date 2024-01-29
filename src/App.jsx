@@ -1,10 +1,16 @@
-import News from "./pages";
 import Overview from "./pages";
+import { Route, Routes } from "react-router-dom";
+import Nav from "./component/Nav";
+import CreateNews from "./pages/CreateNews";
 
 function App() {
   return (
     <>
-      <Overview />
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Overview />} />
+        <Route path="/addNews" element={<CreateNews />} />
+      </Routes>
     </>
   );
 }
