@@ -1,10 +1,13 @@
 import React from "react";
 
-const TextFilled = ({ label, id, placeholder }) => {
+const TextFilled = ({ label, id, placeholder, onChange }) => {
   return (
     <>
       <div>
-        <label htmlFor={id} className="block mb-2 text-sm font-medium text-black">
+        <label
+          htmlFor={id}
+          className="block mb-2 text-sm font-medium text-black"
+        >
           {label}
         </label>
 
@@ -15,6 +18,7 @@ const TextFilled = ({ label, id, placeholder }) => {
           cols="30"
           rows="10"
           placeholder={placeholder}
+          onChange={onChange}
           required
         ></textarea>
       </div>
