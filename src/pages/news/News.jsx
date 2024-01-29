@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import SingleNews from "./SingleNews";
 
 const News = () => {
-  const url = import.meta.env.VITE_REACT_APP_BASE_URL;
+  const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
   let [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`${url}/api/v1/news`)
+    fetch(`${baseUrl}/api/v1/news`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);
