@@ -2,16 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
-    const className = "font-medium text-black hover:underline cursor-pointer";
   return (
     <>
       <nav className="p-5 xl:px-[10%] flex justify-end w-full">
         <ul className="flex gap-4">
           <li>
-            <Link className={className} to="/">Views</Link>
+            <Link
+              className="font-medium text-black hover:underline cursor-pointer"
+              to="/"
+            >
+              News
+            </Link>
           </li>
           <li>
-          <Link className={className} to="/addNews">Add News</Link>
+            <Link
+              className="font-medium text-black hover:underline cursor-pointer"
+              to="/add-news"
+            >
+              Add News
+            </Link>
           </li>
         </ul>
       </nav>

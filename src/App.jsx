@@ -9,7 +9,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Overview />} />
-        <Route path="/addNews" element={<CreateNews />} />
+        <Route path="/add-news" element={<CreateNews />} />
       </Routes>
     </>
   );
