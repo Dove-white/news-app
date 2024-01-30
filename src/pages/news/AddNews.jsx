@@ -3,6 +3,8 @@ import Button from "../../component/ui/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = yup.object({
   title: yup.string().required(),
@@ -11,6 +13,13 @@ const validationSchema = yup.object({
 });
 
 const AddNews = () => {
+  const notify = () =>
+    toast("Form submit successfully", {
+      position: "top-center",
+      autoClose: 2000,
+      theme: "light",
+    });
+
   const {
     register,
     handleSubmit,
@@ -23,6 +32,7 @@ const AddNews = () => {
   const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
   const [inputs, setInputs] = useState({});
+  console.log(inputs);
 
   function capFirst(str) {
     return str[0].toUpperCase() + str.slice(1);
@@ -57,6 +67,7 @@ const AddNews = () => {
   const onSubmitHandler = () => {
     apiPost();
     reset();
+    notify();
   };
 
   return (
@@ -68,17 +79,13 @@ const AddNews = () => {
           className="w-2/5 max-lg:w-2/3 max-sm:w-[90%] flex flex-col gap-7"
         >
           <div>
-            <div className="flex justify-between">
-              <label
-                htmlFor="title"
-                className="block mb-2 text-sm font-medium text-black"
-              >
-                News Title
-              </label>
-              <div className="mb-2 text-xs font-medium text-red-500">
-                {errors.title?.message}
-              </div>
-            </div>
+            <label
+              htmlFor="title"
+              className="block mb-2 text-sm font-medium text-black"
+            >
+              News Title
+            </label>
+
             <input
               {...register("title")}
               type="title"
@@ -87,19 +94,18 @@ const AddNews = () => {
               placeholder="Breaking News"
               onChange={handleChange}
             />
+            <div className="mt-2 text-sm font-medium text-red-500">
+              {errors.title?.message}
+            </div>
           </div>
           <div>
-            <div className="flex justify-between">
-              <label
-                htmlFor="content"
-                className="block mb-2 text-sm font-medium text-black"
-              >
-                News Content
-              </label>
-              <div className="mb-2 text-xs font-medium text-red-500">
-                {errors.content?.message}
-              </div>
-            </div>
+            <label
+              htmlFor="content"
+              className="block mb-2 text-sm font-medium text-black"
+            >
+              News Content
+            </label>
+
             <textarea
               {...register("content")}
               type="content"
@@ -110,19 +116,18 @@ const AddNews = () => {
               rows="10"
               onChange={handleChange}
             ></textarea>
+            <div className="mt-2 text-sm font-medium text-red-500">
+              {errors.content?.message}
+            </div>
           </div>
           <div>
-            <div className="flex justify-between">
-              <label
-                htmlFor="title"
-                className="block mb-2 text-sm font-medium text-black"
-              >
-                News Image
-              </label>
-              <div className="mb-2 text-xs font-medium text-red-500">
-                {errors.url?.message}
-              </div>
-            </div>
+            <label
+              htmlFor="title"
+              className="block mb-2 text-sm font-medium text-black"
+            >
+              News Image
+            </label>
+
             <input
               {...register("url")}
               type="url"
@@ -131,6 +136,9 @@ const AddNews = () => {
               placeholder="https://anylogic.help/anylogic/ui/images/format.png"
               onChange={handleChange}
             />
+            <div className="mt-2 text-sm font-medium text-red-500">
+              {errors.url?.message}
+            </div>
           </div>
           <Button
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none w-full"
@@ -138,6 +146,7 @@ const AddNews = () => {
             type="submit"
             onChange={handleChange}
           />
+          <ToastContainer />
         </form>
       </div>
     </>
