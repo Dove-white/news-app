@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "../../component/ui/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -14,7 +13,7 @@ const validationSchema = yup.object({
 
 const AddNews = () => {
   const notify = () =>
-    toast.success("Form submit successfully", {
+    toast.success("News added", {
       position: "top-center",
       autoClose: 2000,
       theme: "light",
@@ -32,7 +31,7 @@ const AddNews = () => {
   const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
   const [inputs, setInputs] = useState({});
-  
+
   function capFirst(str) {
     return str[0].toUpperCase() + str.slice(1);
   }
@@ -139,12 +138,11 @@ const AddNews = () => {
               {errors.url?.message}
             </div>
           </div>
-          <Button
+          <button
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none w-full"
-            name="Submit"
             type="submit"
             onChange={handleChange}
-          />
+          >Submit</button>
           <ToastContainer />
         </form>
       </div>
