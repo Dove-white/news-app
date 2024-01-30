@@ -32,8 +32,7 @@ const AddNews = () => {
   const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
   const [inputs, setInputs] = useState({});
-  console.log(inputs);
-
+  
   function capFirst(str) {
     return str[0].toUpperCase() + str.slice(1);
   }
