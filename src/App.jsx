@@ -1,7 +1,7 @@
 import Overview from "./pages";
 import { Route, Routes } from "react-router-dom";
 import Nav from "./component/Nav";
-import CreateNews from "./pages/CreateNews";
+import AddNews from "./pages/news/AddNews";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Overview />} />
-        <Route path="/add-news" element={<CreateNews />} />
+        <Route path="/add-news" element={<AddNews />} />
       </Routes>
     </>
   );
