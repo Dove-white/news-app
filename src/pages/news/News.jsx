@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import SingleNews from "./SingleNews";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const News = () => {
+  const notify = () =>
+    toast.success("News deleted", {
+      position: "top-center",
+      autoClose: 2000,
+      theme: "light",
+    });
+
   const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
   let [data, setData] = useState([]);
@@ -14,6 +23,29 @@ const News = () => {
       });
   }, []);
 
+  // Delete News
+  const deleteNews = async (id) => {
+    try {
+      const response = await fetch(`${baseUrl}/api/v1/news/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`http error status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("error during delete operation", error.message);
+    }
+  };
+
+  const handleDelete = (event) => {
+    deleteNews(event);
+    console.log(event);
+    notify();
+  };
+
   return (
     <>
       <main>
@@ -25,9 +57,11 @@ const News = () => {
               title={item.title}
               content={item.content}
               imageUrl={item.image}
+              deleteNews={() => handleDelete(item.id)}
             />
           ))}
         </div>
+        <ToastContainer />
       </main>
     </>
   );
