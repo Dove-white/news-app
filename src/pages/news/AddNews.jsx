@@ -14,7 +14,7 @@ const validationSchema = yup.object({
 
 const AddNews = () => {
   const notify = () =>
-    toast("Form submit successfully", {
+    toast.success("Form submit successfully", {
       position: "top-center",
       autoClose: 2000,
       theme: "light",
