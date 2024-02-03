@@ -12,13 +12,6 @@ const validationSchema = yup.object({
 });
 
 const AddNews = () => {
-  const notify = () =>
-    toast.success("News added", {
-      position: "top-center",
-      autoClose: 2000,
-      theme: "light",
-    });
-
   const {
     register,
     handleSubmit,
@@ -38,19 +31,28 @@ const AddNews = () => {
 
   // Post Method
   const apiPost = async () => {
-    await fetch(`${baseUrl}/api/v1/news`, {
-      method: "POST",
-      body: JSON.stringify({
-        title: inputs.title.toUpperCase().trim(),
-        content: capFirst("" + inputs.content.trim()),
-        image: inputs.url.trim(),
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    try {
+      const response = await fetch(`${baseUrl}/api/v1/news`, {
+        method: "POST",
+        body: JSON.stringify({
+          title: inputs.title.toUpperCase().trim(),
+          content: capFirst("" + inputs.content.trim()),
+          image: inputs.url.trim(),
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    } catch (e) {
+      console.log(e.message);
+      toast.error("News added", {
+        position: "top-center",
+        autoClose: 2000,
+        theme: "light",
+      });
+    }
   };
 
   const handleChange = (event) => {
@@ -65,7 +67,12 @@ const AddNews = () => {
   const onSubmitHandler = () => {
     apiPost();
     reset();
-    notify();
+    // notify();
+    toast.success("News added", {
+      position: "top-center",
+      autoClose: 2000,
+      theme: "light",
+    });
   };
 
   return (
@@ -142,7 +149,9 @@ const AddNews = () => {
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none w-full"
             type="submit"
             onChange={handleChange}
-          >Submit</button>
+          >
+            Submit
+          </button>
           <ToastContainer />
         </form>
       </div>

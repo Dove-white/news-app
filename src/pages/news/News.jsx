@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import SingleNews from "./SingleNews";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { confirmAlert } from 'react-confirm-alert'; 
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const News = () => {
   const [success, setSuccess] = useState(null);
@@ -49,7 +49,11 @@ const News = () => {
         setSuccess(response.ok);
       }
       if (!response.ok) {
-        toast.error(response.status)
+        toast.error("there is an error", {
+          position: "top-center",
+          autoClose: 2000,
+          theme: "light",
+        });
         throw new Error(`http error status: ${response.status}`);
       }
     } catch (error) {
@@ -59,17 +63,17 @@ const News = () => {
 
   const handleDelete = (id) => {
     confirmAlert({
-      title: 'Confirm to delete',
-      message: '',
+      title: "Confirm to delete",
+      message: "",
       buttons: [
         {
-          label: 'Yes',
-          onClick: () => deleteNews(id)
+          label: "Yes",
+          onClick: () => deleteNews(id),
         },
         {
-          label: 'No',
-        }
-      ]
+          label: "No",
+        },
+      ],
     });
   };
 
