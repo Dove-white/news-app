@@ -5,11 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
+export const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
+
 const News = () => {
   const [success, setSuccess] = useState(null);
-  console.log("success", success);
 
-  const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
 
   let [data, setData] = useState([]);
 
@@ -77,6 +77,10 @@ const News = () => {
     });
   };
 
+  const handleUpdate = () => {
+    console.log("update");
+  };
+
   return (
     <>
       <main>
@@ -89,6 +93,8 @@ const News = () => {
               content={item.content}
               imageUrl={item.image}
               deleteNews={() => handleDelete(item.id)}
+              updateNews={() => {handleUpdate(item.id)}}
+              id={item.id}
             />
           ))}
         </div>
