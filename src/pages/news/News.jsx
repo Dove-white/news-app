@@ -11,9 +11,17 @@ import { ImImage } from "react-icons/im";
 const News = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [dataLength, setDataLength] = useState([]);
 
   useEffect(() => {
     getMyData();
+  }, []);
+
+  useEffect(() => {
+    const dataLength = JSON.parse(localStorage.getItem("dataLength"));
+    if (dataLength) {
+      setDataLength(dataLength);
+    }
   }, []);
 
   const getMyData = async () => {
@@ -30,6 +38,7 @@ const News = () => {
     try {
       const isSuccess = await deleteData(id);
       if (isSuccess) {
+        localStorage.setItem("dataLength", JSON.stringify(data.length - 1));
         getMyData();
         toast.success("News deleted", {
           position: "top-center",
@@ -76,8 +85,8 @@ const News = () => {
         <h2 className="text-3xl font-bold text-center">News</h2>
         {loading === false ? (
           <div className="flex flex-wrap lg:grid lg:grid-cols-3 xl:grid-cols-4 max-md:justify-center gap-4">
-            {Array(4).fill(
-              <article className="w-[300px] flex flex-col gap-2 border-2 p-3 rounded-2xl m-5 border-t-0 animate-pulse">
+            {Array(dataLength || 4).fill(0).map((_, index) => (
+              <article key={index} className="w-[300px] flex flex-col gap-2 border-2 p-3 rounded-2xl m-5 border-t-0 animate-pulse">
                 <div className="rounded-2xl h-[140px] flex justify-center">
                   <ImImage size="100%" color="#e3e5ea" />
                 </div>
@@ -94,7 +103,7 @@ const News = () => {
                   <div className="h-10 w-20 bg-slate-200 rounded"></div>
                 </div>
               </article>
-            )}
+            ))}
           </div>
         ) : (
           <div className="flex flex-wrap lg:grid lg:grid-cols-3 xl:grid-cols-4 max-md:justify-center gap-4">

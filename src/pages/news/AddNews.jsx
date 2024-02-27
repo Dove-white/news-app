@@ -18,7 +18,9 @@ const validationSchema = yup.object({
 
 const AddNews = () => {
   const [inputs, setInputs] = useState({});
-  let [response, setResponse] = useState(false);
+  const [response, setResponse] = useState(false);
+
+  const updatedDataLength = JSON.parse(localStorage.getItem("dataLength"));
 
   const {
     register,
@@ -35,6 +37,7 @@ const AddNews = () => {
       const isSuccess = await postData(input);
       if (isSuccess) {
         setResponse(isSuccess);
+        localStorage.setItem("dataLength", JSON.stringify(updatedDataLength + 1));
         toast.success("News added", {
           position: "top-center",
           autoClose: 2000,
